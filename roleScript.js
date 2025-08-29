@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function () {
 var typeData = new Typed(".role", {
     strings: [
       "a Discord Bot Developer",
@@ -12,3 +13,4 @@ var typeData = new Typed(".role", {
     backSpeed: 80,
     backDelay: 1000,
   });
+    });
