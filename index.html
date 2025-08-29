@@ -389,23 +389,46 @@
 
 <!-- Inline Typed.js Setup -->
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    new Typed(".role", {
-      strings: [
-        "a Bot Developer",
-        "a Web Developer",
-        "a Problem Solver",
-        "a web Designer"
-        "H E L L •|• F A R D"
-      ],
-      typeSpeed: 70,
-      backSpeed: 50,
-      backDelay: 1500,
-      loop: true,
-      showCursor: true,
-      cursorChar: "|"
-    });
-  });
+  const roles = [
+    "a Bot Developer",
+    "a Web Developer",
+    "a Problem Solver",
+    "a Designer"
+    "H E L L •|• F A R D",
+  ];
+
+  const element = document.querySelector(".role");
+  let roleIndex = 0;
+  let charIndex = 0;
+  let deleting = false;
+
+  function typeEffect() {
+    const current = roles[roleIndex];
+    
+    if (!deleting) {
+      element.textContent = current.substring(0, charIndex + 1);
+      charIndex++;
+
+      if (charIndex === current.length) {
+        deleting = true;
+        setTimeout(typeEffect, 1500); // pause before deleting
+        return;
+      }
+    } else {
+      element.textContent = current.substring(0, charIndex - 1);
+      charIndex--;
+
+      if (charIndex === 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+      }
+    }
+
+    setTimeout(typeEffect, deleting ? 50 : 100); // speed
+  }
+
+  // start typing once page loads
+  window.onload = typeEffect;
 </script>
 </body>
 </html>
